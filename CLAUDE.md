@@ -9,6 +9,23 @@ Do not edit or delete junctioned skills in place; update upstream or rerun:
 `powershell -NoProfile -ExecutionPolicy Bypass -File "E:\ARISProject\Auto-claude-code-research-in-sleep\tools\install_aris.ps1" "E:\ResearchProject" -Platform claude -Reconcile`
 <!-- ARIS:END -->
 
+
+## ARIS Upstream Version
+The ARIS junctions (`.claude/skills/*`, `.aris/tools`) point into `E:\ARISProject\Auto-claude-code-research-in-sleep`. Git for Windows treats junctions as plain directories, so their content is committed as regular files — GitHub holds a copy as of the commit below, and a fresh clone gets working directories that are no longer linked to ARIS:
+
+- Upstream: `https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep`
+- Commit: `f1bd907b58f653131ebe6807c482e2554e07f9b9` (committed 2026-09-11)
+
+To relink a fresh clone, restore ARIS at this commit, delete the copied `.claude/skills/*` and `.aris/tools` (the installer refuses to replace real directories), then rerun the installer command above:
+
+```powershell
+git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git E:\ARISProject\Auto-claude-code-research-in-sleep
+git -C E:\ARISProject\Auto-claude-code-research-in-sleep checkout f1bd907b58f653131ebe6807c482e2554e07f9b9
+```
+
+Nothing enforces this pin — the junctions follow whatever `E:\ARISProject\Auto-claude-code-research-in-sleep` has checked out, so a `git pull` there changes the skills immediately and shows up in this repo's `git status` under `.claude/skills/` and `.aris/tools/`. After updating ARIS, replace the commit above with the output of `git -C E:\ARISProject\Auto-claude-code-research-in-sleep rev-parse HEAD` and commit it together with those changes.
+
+
 ## Zotero Paper Full Text (MinerU Cache)
 To read a paper stored in Zotero, read its local MinerU markdown first.
 Prefer it over `get_content`, `zotero_get_item_fulltext`, or parsing the PDF.
