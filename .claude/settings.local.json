@@ -1,0 +1,54 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "zotero-mcp-v1",
+    "zotero-mcp-v2",
+    "codex",
+    "obsidian",
+    "ieee-sciencedirect-download"
+  ],
+  "permissions": {
+    "allow": [
+      "mcp__zotero-mcp-v1",
+      "mcp__zotero-mcp-v2",
+      "mcp__codex",
+      "mcp__obsidian",
+      "mcp__ieee-sciencedirect-download",
+      "mcp__ieee-sciencedirect-download__status",
+      "mcp__ieee-sciencedirect-download__ieee_search",
+      "mcp__ieee-sciencedirect-download__ieee_detail",
+      "mcp__ieee-sciencedirect-download__ieee_login",
+      "mcp__ieee-sciencedirect-download__ieee_download",
+      "mcp__ieee-sciencedirect-download__sciencedirect_search",
+      "mcp__ieee-sciencedirect-download__sciencedirect_detail",
+      "mcp__ieee-sciencedirect-download__sciencedirect_login",
+      "mcp__ieee-sciencedirect-download__sciencedirect_download",
+      "mcp__zotero-mcp-v1__search_collections",
+      "mcp__zotero-mcp-v1__get_subcollections",
+      "mcp__zotero-mcp-v1__get_collection_details",
+      "mcp__zotero-mcp-v1__get_collection_items",
+      "mcp__zotero-mcp-v1__search_library",
+      "mcp__zotero-mcp-v1__add_by_identifier",
+      "mcp__zotero-mcp-v1__add_items_to_collection",
+      "mcp__zotero-mcp-v1__write_item",
+      "mcp__zotero-mcp-v2__zotero_get_collection_items",
+      "mcp__zotero-mcp-v2__zotero_get_item_metadata",
+      "mcp__zotero-mcp-v2__zotero_get_item_children",
+      "mcp__obsidian__vault_read",
+      "mcp__obsidian__vault_write",
+      "mcp__obsidian__vault_append",
+      "WebFetch(domain:api.crossref.org)"
+    ],
+    "ask": [
+      "mcp__zotero-mcp-v1__delete_collection",
+      "mcp__zotero-mcp-v1__remove_items_from_collection",
+      "mcp__zotero-mcp-v2__zotero_delete_item",
+      "mcp__zotero-mcp-v2__zotero_delete_collection",
+      "mcp__zotero-mcp-v2__zotero_delete_annotation",
+      "mcp__zotero-mcp-v2__zotero_batch_update",
+      "mcp__obsidian__vault_delete",
+      "mcp__obsidian__vault_move",
+      "mcp__obsidian__command_execute"
+    ]
+  }
+}

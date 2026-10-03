@@ -1,0 +1,45 @@
+{
+  "mcpServers": {
+    "zotero-mcp-v1": {
+      "name": "zotero-mcp-v1",
+      "type": "http",
+      "url": "http://127.0.0.1:23120/mcp"
+    },
+    "zotero-mcp-v2": {
+      "name": "zotero-mcp-v2",
+      "type": "stdio",
+      "isActive": true,
+      "command": "C:\\Users\\Ruimin Huang\\.conda\\envs\\slide\\Scripts\\zotero-mcp.exe",
+      "args": [],
+      "env": {
+        "ZOTERO_LOCAL": "true",
+        "ZOTERO_EMBEDDING_MODEL": "default",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    },
+     "codex": {
+      "type": "stdio",
+      "command": "C:\\Users\\Ruimin Huang\\.conda\\envs\\slide\\python.exe",
+      "args": [
+        "E:\\ARISProject\\Auto-claude-code-research-in-sleep\\mcp-servers\\codex-exec\\server.py"
+      ],
+      "env": {
+        "CODEX_BIN": "C:\\Users\\Ruimin Huang\\AppData\\Roaming\\npm\\codex.cmd"
+      }
+    },
+    "obsidian": {
+      "type": "http",
+      "url": "http://127.0.0.1:27123/mcp/",
+      "headers": {
+        "Authorization": "Bearer 446b9f9fe07d6eeae7a0a60e306a4f254e61d52312446864182b775fb2aeff4b"
+      }
+    },
+    "ieee-sciencedirect-download": {
+      "type": "stdio",
+      "command": "C:\\Users\\Ruimin Huang\\.conda\\envs\\slide\\python.exe",
+      "args": [
+        "E:\\scholar-search\\scholar-search\\cnki-ieee-download\\server.py"
+      ]
+    }
+  }
+}

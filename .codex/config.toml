@@ -1,0 +1,99 @@
+# ============================================================
+# Zotero MCP v1
+# ============================================================
+
+[mcp_servers.zotero-mcp-v1]
+url = "http://127.0.0.1:23120/mcp"
+enabled = true
+default_tools_approval_mode = "approve"
+
+# These destructive operations require confirmation.
+
+[mcp_servers.zotero-mcp-v1.tools.delete_collection]
+approval_mode = "prompt"
+
+[mcp_servers.zotero-mcp-v1.tools.remove_items_from_collection]
+approval_mode = "prompt"
+
+
+# ============================================================
+# Zotero MCP v2
+# ============================================================
+
+[mcp_servers.zotero-mcp-v2]
+command = 'C:\Users\Ruimin Huang\.conda\envs\slide\Scripts\zotero-mcp.exe'
+args = []
+enabled = true
+default_tools_approval_mode = "approve"
+
+[mcp_servers.zotero-mcp-v2.env]
+ZOTERO_LOCAL = "true"
+ZOTERO_EMBEDDING_MODEL = "default"
+PYTHONIOENCODING = "utf-8"
+
+# These destructive / batch operations require confirmation.
+
+[mcp_servers.zotero-mcp-v2.tools.zotero_delete_item]
+approval_mode = "prompt"
+
+[mcp_servers.zotero-mcp-v2.tools.zotero_delete_collection]
+approval_mode = "prompt"
+
+[mcp_servers.zotero-mcp-v2.tools.zotero_delete_annotation]
+approval_mode = "prompt"
+
+[mcp_servers.zotero-mcp-v2.tools.zotero_batch_update]
+approval_mode = "prompt"
+
+
+# ============================================================
+# Codex MCP
+# ============================================================
+
+# [mcp_servers.codex]
+# command = 'C:\Users\Ruimin Huang\.conda\envs\slide\python.exe'
+# args = [
+#     'E:\ARISProject\Auto-claude-code-research-in-sleep\mcp-servers\codex-exec\server.py'
+# ]
+# enabled = true
+# default_tools_approval_mode = "approve"
+
+# [mcp_servers.codex.env]
+# CODEX_BIN = 'C:\Users\Ruimin Huang\AppData\Roaming\npm\codex.cmd'
+
+
+# ============================================================
+# Obsidian MCP
+# ============================================================
+
+[mcp_servers.obsidian]
+url = "http://127.0.0.1:27123/mcp/"
+enabled = true
+default_tools_approval_mode = "approve"
+
+[mcp_servers.obsidian.http_headers]
+Authorization = "Bearer 446b9f9fe07d6eeae7a0a60e306a4f254e61d52312446864182b775fb2aeff4b"
+
+# These destructive / command-execution operations require confirmation.
+
+[mcp_servers.obsidian.tools.vault_delete]
+approval_mode = "prompt"
+
+[mcp_servers.obsidian.tools.vault_move]
+approval_mode = "prompt"
+
+[mcp_servers.obsidian.tools.command_execute]
+approval_mode = "prompt"
+
+
+# ============================================================
+# IEEE / ScienceDirect MCP
+# ============================================================
+
+# [mcp_servers.ieee-sciencedirect-download]
+# command = 'C:\Users\Ruimin Huang\.conda\envs\slide\python.exe'
+# args = [
+#     'E:\scholar-search\scholar-search\cnki-ieee-download\server.py'
+# ]
+# enabled = true
+# default_tools_approval_mode = "approve"
