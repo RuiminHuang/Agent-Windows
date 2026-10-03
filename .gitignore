@@ -1,0 +1,15 @@
+# Local configs containing secrets (Obsidian API token) or machine-specific settings
+.mcp.json
+.codex/config.toml
+.claude/settings.local.json
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
+*.toc

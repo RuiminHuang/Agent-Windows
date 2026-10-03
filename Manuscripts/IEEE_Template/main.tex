@@ -1,0 +1,126 @@
+% \RequirePackage[l2tabu, orthodox]{nag} % 检测已被淘汰的宏包及过时的命令
+\documentclass[twocolumn]{IEEEtran}
+
+%%%%%%%%%%%% official suggested packages  %%%%%%%%%%%%
+% \usepackage{cite} % 用 natbib 代替
+\usepackage[pdftex]{graphicx} % 插图命令 \includegraphics
+\usepackage{amsmath} % Math Packages
+% 模板要求不许使用 algorithm.sty 和 algorithm2e.sty
+% 模板允许使用 algorithmicx.sty
+\usepackage{algorithmic}
+\usepackage{array} % Alignment Packages
+% 模板要求必须开启 caption=false
+\usepackage[caption=false,font=footnotesize]{subfig} % Subfigure Packages
+% 模板要求不许使用 cuted.sty 和 midfloat.sty
+% Float Packages
+% 原先用 dblfloatfix，但它内部 \RequirePackage{fixltx2e}，而 fixltx2e 的修正
+% 自 LaTeX 2015 起已并入内核，只会输出一条无用警告。
+% stfloats 单独提供 dblfloatfix 的全部能力（跨栏浮动体可置底，\@dbflt 默认 [tbp]），
+% 且仍在维护。注意：stfloats 与 dblfloatfix 互斥，不可同时载入。
+\usepackage{stfloats}
+\usepackage{url} % simple URL typesetting
+
+%%%%%%%%%%%% packages added by myself %%%%%%%%%%%%
+% 调整单词、字母的间距，需要放在字体宏包之前
+\usepackage{microtype}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+% \usepackage{booktabs}       % professional-quality tables，也就是三线表
+\usepackage{paralist} % Compacted versions of enumerate and itemize.
+\usepackage{marvosym} % 常用符号, 特别是打勾、打叉
+\usepackage{bm} % 实现字体的斜体加粗
+\usepackage{bbm} % fix \mathbb doesn't support digits
+% \usepackage{amsfonts}  % for \mathbb, blackboard bold，黑板粗体
+\usepackage{amssymb}   % 黑板粗体 \mathbb, 德文尖角体 \mathfrak, \backsim
+\usepackage{mathrsfs} % 花体 \mathscr
+\usepackage{tabularray} % tblr or talltblr or longtblr environment
+\UseTblrLibrary{booktabs}       % professional-quality tables，也就是三线表
+\usepackage{tabularx} % 自动计算列宽的表格包
+\usepackage[flushleft]{threeparttable} % 给表格项添加注释
+\usepackage{colortbl} % 表格行列颜色
+\usepackage{makecell} % 表格内容换行
+\usepackage{multirow} % 多行表格
+\usepackage{nicefrac} % 斜着的分号
+\usepackage[dvipsnames]{xcolor} % 字体颜色
+\usepackage{soul} % highlight, strikeout, underline
+\setul{0.5ex}{0.3ex}
+\newcommand{\ulcolor}[2][Red]{\setulcolor{#1}\ul{#2}}
+% Extensive support for hypertext, in order to cross-reference.
+% \usepackage[bookmarks=false,breaklinks=true,colorlinks=true,
+%             linkcolor=red,pagebackref=true]{hyperref}
+% \usepackage{hyperref}
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=blue,
+%     filecolor=magenta,
+%     urlcolor=cyan}
+% \definecolor{citecolor}{RGB}{34,139,34}
+\definecolor{citecolor}{RGB}{0,0,255}
+% \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,
+%     citecolor=citecolor,bookmarks=false]{hyperref}
+% letterpaper 选项已被新版 hyperref 废弃（纸张尺寸由 IEEEtran 决定），故移除
+\usepackage[pagebackref=false,breaklinks=true,colorlinks,
+    citecolor=citecolor,bookmarks=false]{hyperref}
+\usepackage{cleveref}  % for \cref
+\crefformat{figure}{Fig.~#2#1#3}
+\crefformat{equation}{Eq.~(#2#1#3)}
+\crefformat{table}{Table~#2#1#3}
+\crefformat{section}{Section~#2#1#3}
+\crefformat{algorithm}{Algorithm~#2#1#3}
+\crefformat{appendix}{Appendix #2#1#3}
+\crefformat{subsection}{subsection~#2#1#3}
+\usepackage{cellspace}
+\usepackage[numbers,sort&compress]{natbib} % 代替 cite.sty
+\renewcommand{\bibfont}{\small}
+\usepackage{xspace} % 用于在 \newcommand 中添加空格
+\newcommand{\ie}{i.\nolinebreak[4]\hspace{0.01em}\nolinebreak[4]e.\@\xspace}
+\newcommand{\eg}{e.\nolinebreak[4]\hspace{0.01em}\nolinebreak[4]g.\@\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+
+\usepackage{pifont} % http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{53}}%
+% \newcommand{\red}[1]{\textcolor{red}{#1}}
+% \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+% \newcommand{\todo}{\red{[TODO]~}}
+% \newcommand{\todot}[1]{\red{[TODO]~#1~}}
+
+\newcommand{\rewrite}[1]{{\textcolor{red}{#1}}} % 重写
+
+% Table Column Color
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{rgb}{0.9,0.9,0.9}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+% 自定义带底色的居中列。注意 b 是 array 的原生列类型（底对齐 parbox，用法 b{3cm}），
+% 不能占用，否则 array 会报 "Redefining primitive column b"，且原生用法失效。
+% 这里白底列改用 n（none/normal），array 原生的 c l r m b p 均保持原义。
+\newcolumntype{a}{>{\columncolor{Gray}}c} % 灰底居中列
+\newcolumntype{n}{>{\columncolor{white}}c} % 白底居中列（原名 b，已改名）
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{.5\baselineskip} % 调整公式与正文间的段前距离
+\setlength{\belowdisplayskip}{.5\baselineskip} % 调整公式与正文间的段后距离
+
+
+\title{Motion-Adaptive Long-Term Memory Network for Fast-Moving Infrared Small Target Detection}
+
+
+% author names and IEEE memberships
+\input{contents/1-authors.tex}
+
+\maketitle
+
+\input{contents/2-abstract.tex}
+\input{contents/3-introduction.tex}
+\input{contents/4-related-work.tex}
+\input{contents/5-method.tex}
+\input{contents/6-experiment.tex}
+\input{contents/7-conclusion.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{./reference.bib}
+
+\input{contents/8-biography.tex} % 作者介绍
+
+\end{document}
